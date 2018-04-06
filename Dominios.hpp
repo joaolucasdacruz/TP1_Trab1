@@ -1,6 +1,7 @@
 #ifndef DOMINIOS_HPP_INCLUDED
 #define DOMINIOS_HPP_INCLUDED
 
+using namespace std;
 class Nome
 {
 
@@ -10,7 +11,7 @@ private:
     void validar(char) throw (invalid_argument);
 
 public:
-    //Métodos de acesso.
+    //MÃ©todos de acesso.
     void setNome(char) throw (invalid_argument);
     char getNome() const{
     return nome;
@@ -40,6 +41,13 @@ class EnderecoDeCorreioEletronico
 class Senha
 {
 
+    private:
+        void validar(std::string) throw (invalid_argument);
+    public:
+        void setSenha(std::string) throw (invalid_argument);
+        std::string getSenha(std::string){
+            return(senha);
+        }
 }
 class TextoDeDefinicao
 {
