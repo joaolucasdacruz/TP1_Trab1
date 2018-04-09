@@ -1,37 +1,59 @@
 #include "Dominios.hpp"
-class Nome{
+class Nome
+{
 private:
     char nome[tamanho];
-    const int tamanho = 20;
+    const static int tamanho = 20;
 
+    void Nome::validar(char nome) throw (invalid_argument)
+    {
+
+        if (nome <= tamanho)
+            throw invalid_argument("Argumento invalido.");
+    }
 public:
-void setNome(char)
+
+    void Nome::setNome(char nome) throw (invalid_argument)
+    {
+        validar(nome);
+        this->nome = nome;
+    }
+
 
 }
-class Sobrenome{
+class Sobrenome
+{
 
 }
-class Telefone{
+class Telefone
+{
 
 }
-class Endereco{
+class Endereco
+{
 
 }
-class Data{
+class Data
+{
 
 }
-class EnderecoDeCorreioEletronico{
+class EnderecoDeCorreioEletronico
+{
 
 }
-class Senha{
+class Senha
+{
 
 }
-class TextoDeDefinicao{
+class TextoDeDefinicao
+{
 
 }
-class Idioma{
+class Idioma
+{
 
 }
-class ClasseDeTermo{
+class ClasseDeTermo
+{
 
 }

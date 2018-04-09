@@ -36,8 +36,10 @@
 		<Unit filename="Dominios.hpp" />
 		<Unit filename="Entidades.cpp" />
 		<Unit filename="Entidades.hpp" />
-		<Unit filename="Testes.cpp" />
-		<Unit filename="Testes.hpp" />
+		<Unit filename="TestesDominios.cpp" />
+		<Unit filename="TestesDominios.hpp" />
+		<Unit filename="TestesEntidades.cpp" />
+		<Unit filename="TestesEntidades.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

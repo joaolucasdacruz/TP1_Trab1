@@ -1,3 +1,5 @@
+#ifndef ENTIDADES_HPP_INCLUDED
+#define ENTIDADES_HPP_INCLUDED
 class Nome{
 
 }
@@ -28,3 +30,4 @@ class Idioma{
 class ClasseDeTermo{
 
 }
+#endif
