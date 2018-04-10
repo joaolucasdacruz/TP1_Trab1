@@ -1,6 +1,10 @@
 #ifndef DOMINIOS_HPP_INCLUDED
 #define DOMINIOS_HPP_INCLUDED
 
+#include <stdexcept>
+
+using namespace std;
+
 class Nome
 {
 
@@ -15,9 +19,9 @@ public:
 
     void setNome(char*) throw (invalid_argument);
 
-    char *getNome() const
+    char getNome() const
     {
-        return nome;
+        return *nome;
     }
 
 };
@@ -26,14 +30,14 @@ class Sobrenome
 
 private:
 
-    const static int tamanho = 20;
-    char sobrenome[tamanho];
+    const static int tamSobrenome = 20;
+    char sobrenome[tamSobrenome];
 
-    void validar(char) throw (invalid_argument);
+    void validar(char*) throw (invalid_argument);
 
 public:
 
-    void setSobreNome(char) throw (invalid_argument);
+    void setSobreNome(char*) throw (invalid_argument);
     char getSobreNome() const
     {
         return *sobrenome;
