@@ -6,18 +6,18 @@ class Nome
 
 private:
 
-    const static int tamanho = 20;
-    char nome[tamanho];
+    const static int tamNome = 20;
+    char nome[tamNome];
 
-    void validar(const char*) throw (invalid_argument);
+    void validar(char*) throw (invalid_argument);
 
 public:
 
     void setNome(char*) throw (invalid_argument);
 
-    char getNome() const
+    char *getNome() const
     {
-        return *nome;
+        return nome;
     }
 
 };
