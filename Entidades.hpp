@@ -1,5 +1,10 @@
 #ifndef ENTIDADES_HPP_INCLUDED
 #define ENTIDADES_HPP_INCLUDED
+
+#include <stdexcept>
+
+using namespace std;
+
 class Nome{
 
 }

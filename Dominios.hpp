@@ -49,14 +49,14 @@ class Telefone
 {
 private:
 
-    const static int tamanho = 13;
-    char telefone[tamanho];
+    const static int tamTelefone = 13;
+    char telefone[tamTelefone];
 
-    void validar(char) throw (invalid_argument);
+    void validar(char*) throw (invalid_argument);
 
 public:
 
-    void setTelefone(char) throw (invalid_argument);
+    void setTelefone(char*) throw (invalid_argument);
     char getTelefone() const
     {
         return *telefone;
@@ -68,14 +68,14 @@ class Endereco
 
 private:
 
-    const static int tamanho = 20;
-    char endereco[tamanho];
+    const static int tamEnderco = 20;
+    char endereco[tamEnderco];
 
-    void validar(char) throw (invalid_argument);
+    void validar(char*) throw (invalid_argument);
 
 public:
 
-    void setEndereco(char) throw (invalid_argument);
+    void setEndereco(char*) throw (invalid_argument);
     char getEndereco() const
     {
         return *endereco;
@@ -88,14 +88,14 @@ class Data
 
 private:
 
-    const static int tamanho = 10;
-    char data[tamanho];
+    const static int tamData = 10;
+    char data[tamData];
 
-    void validar(char) throw (invalid_argument);
+    void validar(char*) throw (invalid_argument);
 
 public:
 
-    void setData(char) throw (invalid_argument);
+    void setData(char*) throw (invalid_argument);
     char getData() const
     {
         return *data;
