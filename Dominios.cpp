@@ -3,59 +3,76 @@
 
 
 
-void Nome:: validar(char* nome) throw (invalid_argument)
+#include "Dominios.hpp"
+
+
+using namespace std;
+
+/*------------------------------------------------Métodos da classe Nome--------------------------------------------------------------*/
+
+void Nome::validar(string nome) throw (invalid_argument)
 {
     int tamLetras = 26, tamNumeros = 10;
     char letrasMaiusculas[tamLetras] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','W','Y','Z'};
     char numerosInteiros[tamNumeros] = {'0','1','2','3','4','5','6','7','8','9'};
-    int i=0;
+    int j,i=0;
+    
+    bool achou = false;
 
-    bool achou;
+//Verifica se o nome possui mais de 20 caracteres (tamNome = 20)
+    for(i=0;nome[i]!= '\0';i++)
+    { // As strings terminam com \0
+        if(i==tamNome)
+        {// se i = 20, o nome tem mais de tamNome caracteres, pois i começa em zero
+            throw invalid_argument("O nome nao pode conter mais de 20 caracteres");
+        }
+    }
 
-    while(achou != true ||i<tamLetras) //Verifica se a primeira letra do nome é maiuscula.
+    i=0; // reinicialização da variável de contagem
+
+//Verifica se a primeira letra do nome é maiuscula.
+    while(achou != true && i<tamLetras)
     {
         if(nome[0] == letrasMaiusculas[i])
             achou = true;
         i = i+1;
+        cout<<nome[0]<<endl;
     }
-    if(achou == false)
-    {
-        throw invalid_argument("Argumento invalido.");
+    if(achou == false){
+        throw invalid_argument("\nNome não começa com letra maiuscula\n.");
     }
-
-    for(int i=0; i <= tamNome; i++) // Verifica letra por letra do nome se alguma é um número inteiro
+// Verifica letra por letra do nome se alguma é um número inteiro
+    for(i=0; nome[i]!= '\0'; i++)
     {
-        for(int j=0; j<=tamNumeros; j++)
+        for(int i=0; j<=tamNumeros; j++)
         {
             if(nome[i] == numerosInteiros[j])
             {
-                throw invalid_argument("Argumento invalido.");
+                throw invalid_argument("\nO nome contem digitos\n");
             }
         }
     }
-    for(int i=1; i <= tamNome; i++) // Verifica se alguma letra a partir da segunda  é Maiúscula
+// Verifica se alguma letra é maiuscula além da primeira
+    for(i=1; nome[i]!= '\0'; i++)
     {
-        for(int j=0; j <= tamLetras; j++)
+        for(j=0; j<tamLetras; j++)
         {
             if(nome[i] == letrasMaiusculas[j])
-                throw invalid_argument("Argumento invalido.");
+            {
+                throw invalid_argument("\nLetras maiusculas no meio ou fim do nome\n");
+            }
         }
     }
 }
 
-void Nome::setNome(char *nome) throw (invalid_argument)
+void Nome::setNome(string nome)
 {
-    int i;
     validar(nome);
-    for(i=0; i<=tamNome; i++) // O This não está apontando apenas para o primeiro endereço de nome
-    {
-        this->nome[i] = nome[i];
-    }
+        this->nome = nome;
 }
 
 
-
-
+/*-------------------------------------------------- Métodos da classe Sobrenome-------------------------------------------------------*/
 
 void Sobrenome::validar(char *sobrenome) throw (invalid_argument)
 {
@@ -112,7 +129,7 @@ void Sobrenome::setSobreNome(char *sobrenome) throw (invalid_argument)
 }
 
 
-
+/*------------------------------------------------métodos da classe telefone-----------------------------------------------------------*/
 
 
 void Telefone::validar(char *telefone) throw (invalid_argument)
@@ -185,3 +202,114 @@ void Telefone::setTelefone(char *telefone) throw (invalid_argument)
     }
 
 }
+
+/*------------------------------------------------------------Métodos da classe Senha-------------------------------------------------*/
+
+//Esse método tem que sair daqui e ir para as entidades de usuário.
+bool Senha::findName(string senha, string NomeS){
+
+
+    char compara[tamNome];
+    int i=0,j=0;
+
+    for(i=0;i<8;i++)
+    {
+    if(senha[i] == nomeS[0])                //Se alguma letra da senha é igual à primeira letra do nome
+        {                                   //As próximas letras em sequência são comparaas, até ser encontrada uma diferença
+                                            //Ou até todos os demais caracteres terem sido comparados em sequência
+            while(senha[i+j] == nomeS[j] || i+j <tamSenha){
+                compara[j]= nomeS[j];       // Os caracteres iguais são armazenaos
+                j=j+1;
+
+            }
+            cout<<compara<<endl;
+            if(compara==nomeS) // Se o conjunto de caracteres iguais em sequência conseguir formar o nome
+                return(true);  // Significa que a senha contém o nome.
+            else
+                j=0;
+        }
+    }
+    return (false);
+}
+
+void Senha::validar(string senha) throw (invalid_argument)
+{
+//Armazena o resultado da procura do nome dentro da senha
+    //bool achouNome;
+    bool achouReq;
+
+    //achouNome=findName(senha, nomeS);
+
+    //if( achouNome == true ){
+        //throw invalid_argument(" \n A senha contém o nome \n");
+    //}
+
+    achouReq = procuraChar(senha);
+    if (achouReq == false){
+        throw invalid_argument("\n A senha deve possuir pelo menos um digito, um caractere Maiusculo e um minusculo \n");
+    }
+
+}
+
+bool Senha::procuraChar(string senha)
+{
+    int i;
+    bool achouDig = false;
+    bool achouMai=false;
+    bool achouMin=false;
+    int carac;
+
+    for(i=0; i<8; i++)
+    {
+        carac=senha[i];
+
+        if(65<=carac && carac<=90)
+        {
+            achouMai = true;
+        }
+        if(48<=carac && carac <= 57)
+        {
+            achouDig = true;
+        }
+        if(97<=carac && carac <= 122)
+        {
+            achouMin = true;
+        }
+    }
+
+    if(achouMai == true && achouMin == true && achouDig == true)
+    {
+        return(true);
+    }
+    else {
+        return(false);
+    }
+
+}
+
+void Senha::setSenha(string senha)
+{
+    validar(senha);
+    this->senha = senha;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
