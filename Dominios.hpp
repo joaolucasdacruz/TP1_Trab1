@@ -5,26 +5,32 @@
 
 using namespace std;
 
+/*---------------------------------------------------------Classe Nome----------------------------------------------------------------*/
 class Nome
 {
 
 private:
 
     const static int tamNome = 20;
-    char nome[tamNome];
+    string nome;
 
-    void validar(char*) throw (invalid_argument);
+//Métodos Privados:
+    void validar(string) throw (invalid_argument);
 
 public:
 
-    void setNome(char*) throw (invalid_argument);
+//Método setNome muda o atributo nome
+    void setNome(string);
 
-    char getNome() const
+//getNome retorna o atributo nome do objeto
+    string getNome()
     {
-        return *nome;
+        return nome;
     }
 
 };
+
+/*----------------------------------------------------------Classe Sobrenome-----------------------------------------------------------*/
 class Sobrenome
 {
 
@@ -107,10 +113,53 @@ class EnderecoDeCorreioEletronico
 {
 
 };
+
+/*-------------------------------------------------------------Classe Senha------------------------------------------------------------*/
+
 class Senha
 {
 
+private:
+//Constantes
+    const static int tamNome = 20;
+    const static int tamSenha = 8;
+//Atributos privados
+    string nomeS;
+    string senha;
+
+//Métodos privados:
+
+//Procura o nome do usuário dentro da senha.
+//Retorna verdadeiro caso exista e falso caso contrário.
+    bool findName(string, string);
+//Verifica se a senha escolhida obedece aos padrões estabelecidos
+    void validar(string) throw (invalid_argument);
+
+//Procura dentro da senha uma letra Maiúscula, uma minúscula e um dìgito
+    bool procuraChar(string);
+
+
+public:
+
+//Método construtor da senha
+    Senha(Nome nome) throw (invalid_argument)
+    {
+        nomeS = nome.getNome();
+        if(nomeS == "$$$")
+            throw invalid_argument("nome não inicializado pelo usuario");
+    }
+
+//Armazena a senha
+    void setSenha(string);
+//Retorna a senha
+    string getSenha(string senha)
+    {
+        return(senha);
+    }
 };
+
+/*-------------------------------------------------------- Classe TextoDefinicao-------------------------------------------------------*/
+
 class TextoDeDefinicao
 {
 
