@@ -1,10 +1,5 @@
 #include "Dominios.hpp"
-
-
-
-
-#include "Dominios.hpp"
-
+#include <iostream>
 
 using namespace std;
 
@@ -16,14 +11,16 @@ void Nome::validar(string nome) throw (invalid_argument)
     char letrasMaiusculas[tamLetras] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','W','Y','Z'};
     char numerosInteiros[tamNumeros] = {'0','1','2','3','4','5','6','7','8','9'};
     int j,i=0;
-    
+
     bool achou = false;
 
 //Verifica se o nome possui mais de 20 caracteres (tamNome = 20)
-    for(i=0;nome[i]!= '\0';i++)
-    { // As strings terminam com \0
+    for(i=0; nome[i]!= '\0'; i++)
+    {
+        // As strings terminam com \0
         if(i==tamNome)
-        {// se i = 20, o nome tem mais de tamNome caracteres, pois i começa em zero
+        {
+            // se i = 20, o nome tem mais de tamNome caracteres, pois i começa em zero
             throw invalid_argument("O nome nao pode conter mais de 20 caracteres");
         }
     }
@@ -36,9 +33,9 @@ void Nome::validar(string nome) throw (invalid_argument)
         if(nome[0] == letrasMaiusculas[i])
             achou = true;
         i = i+1;
-        cout<<nome[0]<<endl;
     }
-    if(achou == false){
+    if(achou == false)
+    {
         throw invalid_argument("\nNome não começa com letra maiuscula\n.");
     }
 // Verifica letra por letra do nome se alguma é um número inteiro
@@ -68,7 +65,7 @@ void Nome::validar(string nome) throw (invalid_argument)
 void Nome::setNome(string nome)
 {
     validar(nome);
-        this->nome = nome;
+    this->nome = nome;
 }
 
 
@@ -80,7 +77,7 @@ void Sobrenome::validar(char *sobrenome) throw (invalid_argument)
     int tamLetras = 26, tamNumeros = 10;
     char letrasMaiusculas[tamLetras] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','W','Y','Z'};
     char numerosInteiros[tamNumeros] = {'0','1','2','3','4','5','6','7','8','9'};
-    int i=0;
+    int i=0, j=0;
 
     bool achou;
 
@@ -95,7 +92,7 @@ void Sobrenome::validar(char *sobrenome) throw (invalid_argument)
         throw invalid_argument("Argumento invalido.");
     }
 
-    for(int i=0; i <= tamSobrenome; i++) // Verifica letra por letra do nome se alguma é um número inteiro
+    for(i=0; i <= tamSobrenome; i++) // Verifica letra por letra do nome se alguma é um número inteiro
     {
         for(int j=0; j <= tamNumeros; j++)
         {
@@ -105,9 +102,9 @@ void Sobrenome::validar(char *sobrenome) throw (invalid_argument)
             }
         }
     }
-    for(int i=1; i <= tamSobrenome; i++) // Verifica se alguma letra a partir da segunda  é Maiúscula
+    for(i=1; i <= tamSobrenome; i++) // Verifica se alguma letra a partir da segunda é Maiúscula
     {
-        for(int j=0; j <= tamLetras; j++)
+        for(j=0; j <= tamLetras; j++)
         {
             if(sobrenome[i] == letrasMaiusculas[j])
                 throw invalid_argument("Argumento invalido.");
@@ -206,18 +203,21 @@ void Telefone::setTelefone(char *telefone) throw (invalid_argument)
 /*------------------------------------------------------------Métodos da classe Senha-------------------------------------------------*/
 
 //Esse método tem que sair daqui e ir para as entidades de usuário.
-bool Senha::findName(string senha, string NomeS){
+bool Senha::findName(string senha, string NomeS)
+{
 
 
     char compara[tamNome];
     int i=0,j=0;
 
-    for(i=0;i<8;i++)
+    for(i=0; i<8; i++)
     {
-    if(senha[i] == nomeS[0])                //Se alguma letra da senha é igual à primeira letra do nome
-        {                                   //As próximas letras em sequência são comparaas, até ser encontrada uma diferença
-                                            //Ou até todos os demais caracteres terem sido comparados em sequência
-            while(senha[i+j] == nomeS[j] || i+j <tamSenha){
+        if(senha[i] == nomeS[0])                //Se alguma letra da senha é igual à primeira letra do nome
+        {
+            //As próximas letras em sequência são comparadas, até ser encontrada uma diferença
+            //Ou até todos os demais caracteres terem sido comparados em sequência
+            while(senha[i+j] == nomeS[j] || i+j <tamSenha)
+            {
                 compara[j]= nomeS[j];       // Os caracteres iguais são armazenaos
                 j=j+1;
 
@@ -241,11 +241,12 @@ void Senha::validar(string senha) throw (invalid_argument)
     //achouNome=findName(senha, nomeS);
 
     //if( achouNome == true ){
-        //throw invalid_argument(" \n A senha contém o nome \n");
+    //throw invalid_argument(" \n A senha contém o nome \n");
     //}
 
     achouReq = procuraChar(senha);
-    if (achouReq == false){
+    if (achouReq == false)
+    {
         throw invalid_argument("\n A senha deve possuir pelo menos um digito, um caractere Maiusculo e um minusculo \n");
     }
 
@@ -281,7 +282,8 @@ bool Senha::procuraChar(string senha)
     {
         return(true);
     }
-    else {
+    else
+    {
         return(false);
     }
 
@@ -294,11 +296,75 @@ void Senha::setSenha(string senha)
 }
 
 
+/*------------------------------------------------Métodos da classe Endereco--------------------------------------------------------------*/
 
 
+void Endereco::validar(string endereco) throw (invalid_argument)
+{
 
+    int i, carac;
 
+    for(i=0; endereco[i]!= '\0'; i++)
+    {
+        // As strings terminam com \0
+        if(i==tamEndereco)
+        {
+            // se i = 20, o endereco tem mais de tamEndereco caracteres, pois i começa em zero
+            throw invalid_argument("O endereco nao pode conter mais de 20 caracteres");
+        }
+    }
 
+    if(endereco[0] == 32)
+    {
+
+        throw invalid_argument("Espaco em branco no inicio do endereco");
+
+    }
+
+    if(endereco[19] == 32)
+    {
+
+        throw invalid_argument("Espaco em branco no final do endereco");
+
+    }
+
+    for(i=0; i<tamEndereco; i++) //Verifica se ha dois espaços em brancos ou mais e lanca excessao.
+    {
+        if(endereco[i] == 32)
+        {
+
+            i=i+1;
+
+            if(endereco[i] == 32)
+            {
+
+                throw invalid_argument("Dois ou mais espacos em branco no endereco.");
+
+            }
+
+        }
+    }
+
+    for(i=0; i<tamEndereco; i++)
+    {
+        carac=endereco[i];
+
+        if(48<=carac && carac <= 57)
+        {
+            throw invalid_argument("Ha numeros no endereco.");
+        }
+
+    }
+
+}
+
+void Endereco :: setEndereco(string) throw (invalid_argument)
+{
+
+    validar(endereco);
+    this->endereco = endereco;
+
+}
 
 
 
