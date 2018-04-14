@@ -160,16 +160,58 @@ public:
 
 /*-------------------------------------------------------- Classe TextoDefinicao-------------------------------------------------------*/
 
-class TextoDeDefinicao
+class TextoDef
 {
 
+private:
+/*Atributos privados*/
+    string texto;
+
+/*Métodos privados*/
+    bool validar(string);
+
+public:
+
+/*Métodos Públicos*/
+        void setTexto(string) throw (invalid_argument);
+        string getTexto(){
+            return(texto);
+        }
+
 };
+/*--------------------------------------------------------- Classe Idioma--------------------------------------------------------------*/
 class Idioma
 {
 
+private:
+
+    string idioma;
+    bool validar(string);
+
+public:
+
+    void setIdioma(string) throw(invalid_argument);
+    string getLingua(string idioma)
+    {
+        return(idioma);
+    }
+
 };
+/*---------------------------------------------------------- Classe ClasseDeTermo------------------------------------------------------*/
 class ClasseDeTermo
 {
 
+private:
+
+    string claTer;
+    bool validar(string );
+
+public:
+
+    void setClasse(string) throw(invalid_argument);
+    string getClasser(string claTer){
+        return(claTer);
+    }
 };
 #endif
+/*------------------------------------------------------------------ FIM---------------------------------------------------------------*/
