@@ -59,12 +59,55 @@ public:
 
 };
 
-class Desenvolvedor
+class Desenvolvedor: public Leitor
 {
+
+private:
+
+    Data aniversario;
+
+public:
+
+    void setData(const Data aniversario)
+    {
+        this->aniversario = aniversario;
+    }
+
+    Data getData()
+    {
+        return aniversario;
+    }
+
 };
 
-class Administrador
+class Administrador: public Desenvolvedor
 {
+
+ private:
+    Telefone telefone;
+    Endereco endereco;
+
+ public:
+
+    void setTelefone(const Telefone telefone)
+    {
+        this->telefone = telefone;
+    }
+
+    Telefone getTelefone()
+    {
+        return telefone;
+    }
+
+    void setEndereco(const Endereco endereco)
+    {
+        this->endereco = endereco;
+    }
+
+    Endereco getEndereco()
+    {
+        return endereco;
+    }
 };
 
 class VocabularioControlado

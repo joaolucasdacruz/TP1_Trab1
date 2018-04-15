@@ -55,36 +55,43 @@ public:
 /*----------------------------------------------------------Classe Telefone-----------------------------------------------------------*/
 
         class Telefone
+{
+private:
+
+    const static int tamTelefone = 13;
+    char telefone[tamTelefone];
+
+    void validar(char*) throw (invalid_argument);
+
+public:
+
+    void setTelefone(char*) throw (invalid_argument);
+    char getTelefone() const
     {
-    private:
-
-        const static int tamTelefone = 13;
-        char telefone[tamTelefone];
-
-        void validar(char*) throw (invalid_argument);
-
-    public:
+        return *telefone;
+    }
+};
 
         /*------------------------------------------------------Classe Endereco--------------------------------------------------------*/
 
         class Endereco
-        {
+{
 
-        private:
+private:
 
-            const static int tamEnderco = 20;
-            char endereco[tamEnderco];
+    const static int tamEndereco = 20;
+    string endereco;
 
-            void validar(char*) throw (invalid_argument);
+    void validar(string) throw (invalid_argument);
 
-        public:
+public:
 
-            void setTelefone(char*) throw (invalid_argument);
-
-            char getTelefone() const
-            {
-                return *telefone;
-            }
+    void setEndereco(string) throw (invalid_argument);
+    string getEndereco() const
+    {
+        return endereco;
+    }
+};
 
             /*--------------------------------------------------------Classe Data----------------------------------------------------------*/
 
@@ -237,3 +244,4 @@ public:
             };
 #endif
             /*-----------------------------------------------------FIM----------------------------------------------------------------------*/
+

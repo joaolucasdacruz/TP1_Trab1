@@ -9,14 +9,15 @@
 
 1523023520 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\testesentidades.cpp
 
-1523803564 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.cpp
+1523825338 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.cpp
 	"Dominios.hpp"
 	<iostream>
+	<math.h>
 
-1523824115 c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.hpp
+1523825613 c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.hpp
 	<stdexcept>
 
-1523824079 c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\entidades.hpp
+1523826930 c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\entidades.hpp
 	<string>
 	"Dominios.hpp"
 
