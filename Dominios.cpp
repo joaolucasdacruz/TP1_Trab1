@@ -459,9 +459,287 @@ void ClasseDeTermo::setClasse(string ClaTer) throw (invalid_argument)
     this->claTer = claTer;
 }
 
+/*---------------------------------------------------------Metodos da classe Data------------------------------------------------------*/
+
+/*Checa se a data está no formato DD/MM/AAAA onde D, M e A são inteiros*/
+ bool Data::validaFor(string data)
+{
+    int carac;
+    int i;
+    bool achouChar = false;
+
+    for(i=0; data[i] != '\0' ; i++)
+    {
+        if(i != 2 && i!= 5)
+        {
+            carac = data[i];
+            if(carac < 48 || 57 < carac  )
+            {
+                achouChar=true;
+            }
+        }
+    }
+    if(i != tamData || achouChar == true || data[2] != '/' || data[5] != '/')
+    {
+        return(false);
+    }
+    else
+    {
+        return(true);
+    }
+}
+
+int Data::charToInt(char num)
+{
+  const int asc = 48;
+  int carac;
+  int inteiro=0;
+
+     carac = num;
+     inteiro = carac - asc;
+
+ return(inteiro);
+}
+
+string Data::validaData(string data)
+{
+    int inteiro;
+    int i;
+    int diaInt = 0;
+    int mesInt=0;
+    int anoInt=0;
+    int diaVal;
 
 
+    for(i=6; i < 10 ;i++)
+    {
+        inteiro = charToInt(data[i]);
+        anoInt = anoInt+inteiro*pow(10,9-i);
+    }
 
+    for(i=3; i < 5 ;i++)
+    {
+        inteiro = charToInt(data[i]);
+        mesInt = mesInt+inteiro*pow(10,4-i);
+    }
+
+    for(i=0; i < 2 ;i++)
+    {
+        inteiro = charToInt(data[i]);
+        diaInt = diaInt+inteiro*pow(10,1-i);
+    }
+
+    if(diaInt==0 && anoInt==0 && anoInt==0)
+    {
+       return("dataInicial");
+    }
+    if(anoInt<1900 || 2099<anoInt)
+    {
+        return("anoInvalido");
+    }
+    if(mesInt<1 || 12<mesInt)
+    {
+        return("mesInvalido");
+    }
+
+    switch(mesInt)
+    {
+        case 1:
+            diaVal = 31;
+            break;
+        case 2:
+            if((anoInt - 1900) %4 == 0)
+            {
+                diaVal = 29;
+            }
+            else
+            {
+                diaVal = 28;
+            }
+            break;
+        case 3:
+            diaVal=31;
+            break;
+        case 4:
+            diaVal = 30;
+            break;
+        case 5:
+            diaVal = 31;
+            break;
+        case 6:
+            diaVal = 30;
+            break;
+        case 7:
+            diaVal= 31;
+            break;
+        case 8:
+            diaVal= 31;
+            break;
+        case 9:
+            diaVal=30;
+            break;
+        case 10:
+            diaVal=31;
+            break;
+        case 11:
+            diaVal=30;
+            break;
+        case 12:
+            diaVal=31;
+            break;
+    }
+
+    if(diaInt<1 || diaInt>diaVal)
+    {
+        return("diaInvalido");
+    }
+    return("dataValida");
+}
+
+
+ void Data::setData (string data) throw (invalid_argument)
+ {
+     string dataVal;
+     bool forVal;
+
+     forVal = validaFor(data);
+
+     if(forVal == false)
+     {
+        throw invalid_argument("\n Formato inválido de data\n");
+     }
+
+     dataVal = validaData(data);
+
+
+     if(dataVal == "anoInvalido")
+    {
+        throw invalid_argument("\n Ano invalido \n");
+    }
+
+     dataVal = validaData(data);
+
+     if(dataVal == "mesInvalido")
+     {
+        throw invalid_argument("\n Mes invalido \n");
+     }
+
+     dataVal = validaData(data);
+     if(dataVal == "diaInvalido")
+     {
+         throw invalid_argument("\n Dia invalido \n");
+     }
+
+     this->data = data;
+
+ }
+
+/*---------------------------------------------------------Metodos da classe Email----------------------------------------------------*/
+
+bool Email::validar(string email)
+{
+    int i;
+    int j;
+    int carac;
+    int posA=-1;
+    int contaA=0;
+    char permitidos[19] = {'!','#','$','%','&','*','_','-','/','?','^','_','`','{','|','}','~',';','.'};
+    int chValido=0;
+    bool achouInvalido;
+    bool nDig = false;
+    int fimEmail=0;
+
+ //procura a posição do arroba para separar o local do dominio
+    for(i=0;email[i]!='\0';i++)
+    {
+        if(email[i]=='@')
+        {
+            posA=i;
+            contaA= contaA+1;
+        }
+        fimEmail = i;
+    }
+ //ponto final não pode ser o primeiro caractere nem o ultimo da parte local
+ //pos@=-1 significa que não foi colocado @
+    if(email[0]=='.' || email[posA-1] == '.' || posA==-1)
+    {
+        return(false);
+    }
+// O email só pode ter um separador entre local e dominio
+    if(contaA!=1)
+    {
+        return(false);
+    }
+// Procura algum caractere especial não permitido no local
+    for(i=0;i<posA;i++)
+    {
+        carac = email[i];
+        if((carac<65 || carac > 90) && (carac< 97 || carac > 122) && (carac<48 || carac>57) )
+        {
+            for(j=0;j<19;j++)
+            {
+                if(email[i]==permitidos[j])
+                {
+                    chValido = chValido + 1;
+                }
+            }
+            if(chValido == 0 )
+            {
+                achouInvalido = true;
+            }
+            chValido = 0;
+        }
+    }
+// testa se foi encontrao no local um caractere não permitido
+    if(achouInvalido == true)
+    {
+        return(false);
+    }
+
+//A partir daqui é feita a validação do dominio
+
+//Checa se o hifen é o primeiro ou último caractere do dominio
+    if(email[posA+1]=='-' || email[fimEmail]=='-')
+    {
+         return(false);
+    }
+
+//Checa se todos os caracteres do dominio são numeros
+    for(i=posA+1 ; email[i]!='\0' ; i++)
+    {
+        carac = email[i];
+        if(carac<48 || carac > 57)
+        {
+            nDig = true;
+            cout<<"achou"<<email[i]<<endl;
+        }
+// checa se co caractere percorrido é permitido
+        if((carac<48 || carac > 57) && (carac< 97 || carac > 122) && (carac<48 || carac>57) && email[i]!= '-')
+        {
+            return(false);
+        }
+    }
+//retorna falso se não encontrar nenhum caractere que não seja um digito
+    if(nDig==false)
+    {
+        return(false);
+    }
+
+    return(true);
+}
+
+
+void Email::setEmail(string email) throw(invalid_argument)
+{
+    bool emailVal;
+
+    emailVal=validar(email);
+    if(emailVal==false)
+    {
+        throw invalid_argument("\nEndereco de Email em formato invalido\n");
+    }
+    this->email=email;
+}
 
 
 
