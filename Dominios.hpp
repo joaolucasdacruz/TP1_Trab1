@@ -1,162 +1,180 @@
-#ifndef DOMINIOS_HPP_INCLUDED
-#define DOMINIOS_HPP_INCLUDED
+ #ifndef DOMINIOS_HPP_INCLUDED
+ #define DOMINIOS_HPP_INCLUDED
 
-#include <stdexcept>
+ #include <stdexcept>
 
-using namespace std;
+ using namespace std;
 
-/*---------------------------------------------------------Classe Nome----------------------------------------------------------------*/
-class Nome
-{
+ /*---------------------------------------------------------Classe Nome----------------------------------------------------------------*/
+ class Nome
+ {
 
+ private:
+
+     const static int tamNome = 20;
+     string nome;
+
+ //Métodos Privados:
+     void validar(string) throw (invalid_argument);
+
+ public:
+
+ //Método setNome muda o atributo nome
+     void setNome(string);
+
+ //getNome retorna o atributo nome do objeto
+     string getNome()
+     {
+         return nome;
+     }
+
+ };
+
+ /*----------------------------------------------------------Classe Sobrenome-----------------------------------------------------------*/
+ class Sobrenome
+ {
+
+ private:
+
+     const static int tamSobrenome = 20;
+     char sobrenome[tamSobrenome];
+
+     void validar(char*) throw (invalid_argument);
+
+ public:
+
+     void setSobreNome(char*) throw (invalid_argument);
+     char getSobreNome() const
+     {
+         return *sobrenome;
+     }
+
+ };
+
+ /*-------------------------------------------------Classe Telefone-------------------------------------------------------------*/
+
+ class Telefone
+ {
+ private:
+
+     const static int tamTelefone = 13;
+     char telefone[tamTelefone];
+
+     void validar(char*) throw (invalid_argument);
+
+ public:
+
+     void setTelefone(char*) throw (invalid_argument);
+     char getTelefone() const
+     {
+         return *telefone;
+     }
+ };
+
+ /*------------------------------------------------------Classe Endereco--------------------------------------------------------*/
+
+ class Endereco
+ {
+
+ private:
+
+     const static int tamEnderco = 20;
+     char endereco[tamEnderco];
+
+     void validar(char*) throw (invalid_argument);
+
+ public:
+
+     void setEndereco(char*) throw (invalid_argument);
+     char getEndereco() const
+     {
+         return *endereco;
+     }
+ };
+
+ /*--------------------------------------------------------Classe Data----------------------------------------------------------*/
+
+ class Data
+ {
+
+ private:
+
+     const static int tamData = 10;
+     string data;
+
+     int  charToInt(char);
+     bool validaFor(string);
+     string validaData(string);
+
+ public:
+
+     void setData(string) throw (invalid_argument);
+     string getData()
+     {
+         return data;
+     }
+ };
+
+/*----------------------------------------------------EnderecoDeCorreioEletronico------------------------------------------------*/
+
+ class Email
+ {
 private:
-
-    const static int tamNome = 20;
-    string nome;
-
-//Métodos Privados:
-    void validar(string) throw (invalid_argument);
-
+    string email;
+    bool validar(string);
 public:
 
-//Método setNome muda o atributo nome
-    void setNome(string);
+    void setEmail(string) throw (invalid_argument);
 
-//getNome retorna o atributo nome do objeto
-    string getNome()
+    string getEmail()
     {
-        return nome;
+        return(email);
     }
 
-};
+ };
+ /*-------------------------------------------------------------Classe Senha------------------------------------------------------------*/
 
-/*----------------------------------------------------------Classe Sobrenome-----------------------------------------------------------*/
-class Sobrenome
-{
+ class Senha
+ {
 
-private:
+ private:
+ //Constantes
+     const static int tamNome = 20;
+     const static int tamSenha = 8;
+ //Atributos privados
+     string nomeS;
+     string senha;
 
-    const static int tamSobrenome = 20;
-    char sobrenome[tamSobrenome];
+ //Métodos privados:
 
-    void validar(char*) throw (invalid_argument);
+ //Procura o nome do usuário dentro da senha.
+ //Retorna verdadeiro caso exista e falso caso contrário.
+     bool findName(string, string);
+ //Verifica se a senha escolhida obedece aos padrões estabelecidos
+     void validar(string) throw (invalid_argument);
 
-public:
-
-    void setSobreNome(char*) throw (invalid_argument);
-    char getSobreNome() const
-    {
-        return *sobrenome;
-    }
-
-};
-
-class Telefone
-{
-private:
-
-    const static int tamTelefone = 13;
-    char telefone[tamTelefone];
-
-    void validar(char*) throw (invalid_argument);
-
-public:
-
-    void setTelefone(char*) throw (invalid_argument);
-    char getTelefone() const
-    {
-        return *telefone;
-    }
-};
-
-class Endereco
-{
-
-private:
-
-    const static int tamEndereco = 20;
-    string endereco;
-
-    void validar(string) throw (invalid_argument);
-
-public:
-
-    void setEndereco(string) throw (invalid_argument);
-    string getEndereco() const
-    {
-        return endereco;
-    }
-};
+ //Procura dentro da senha uma letra Maiúscula, uma minúscula e um dìgito
+     bool procuraChar(string);
 
 
-class Data
-{
+ public:
 
-private:
+ //Método construtor da senha
+     Senha(Nome nome) throw (invalid_argument)
+     {
+         nomeS = nome.getNome();
+         if(nomeS == "$$$")
+             throw invalid_argument("nome não inicializado pelo usuario");
+     }
 
-    const static int tamData = 10;
-    char data[tamData];
-
-    void validar(char*) throw (invalid_argument);
-
-public:
-
-    void setData(char*) throw (invalid_argument);
-    char getData() const
-    {
-        return *data;
-    }
-};
-
-
-class EnderecoDeCorreioEletronico
-{
-
-};
-
-/*-------------------------------------------------------------Classe Senha------------------------------------------------------------*/
-
-class Senha
-{
-
-private:
-//Constantes
-    const static int tamNome = 20;
-    const static int tamSenha = 8;
-//Atributos privados
-    string nomeS;
-    string senha;
-
-//Métodos privados:
-
-//Procura o nome do usuário dentro da senha.
-//Retorna verdadeiro caso exista e falso caso contrário.
-    bool findName(string, string);
-//Verifica se a senha escolhida obedece aos padrões estabelecidos
-    void validar(string) throw (invalid_argument);
-
-//Procura dentro da senha uma letra Maiúscula, uma minúscula e um dìgito
-    bool procuraChar(string);
-
-
-public:
-
-//Método construtor da senha
-    Senha(Nome nome) throw (invalid_argument)
-    {
-        nomeS = nome.getNome();
-        if(nomeS == "$$$")
-            throw invalid_argument("nome não inicializado pelo usuario");
-    }
-
-//Armazena a senha
-    void setSenha(string);
-//Retorna a senha
-    string getSenha(string senha)
-    {
-        return(senha);
-    }
-};
+ //Armazena a senha
+     void setSenha(string);
+ //Retorna a senha
+     string getSenha()
+     {
+         return(senha);
+     }
+ };
 
 /*-------------------------------------------------------- Classe TextoDefinicao-------------------------------------------------------*/
 
@@ -179,7 +197,10 @@ public:
         }
 
 };
-/*--------------------------------------------------------- Classe Idioma--------------------------------------------------------------*/
+
+
+/*-----------------------------------------------------classe Idioma------------------------------------------------------------*/
+
 class Idioma
 {
 
@@ -191,13 +212,15 @@ private:
 public:
 
     void setIdioma(string) throw(invalid_argument);
-    string getLingua(string idioma)
+    string getIdioma()
     {
         return(idioma);
     }
 
 };
-/*---------------------------------------------------------- Classe ClasseDeTermo------------------------------------------------------*/
+
+/*---------------------------------------------------ClasseDeTermo--------------------------------------------------------------*/
+
 class ClasseDeTermo
 {
 
@@ -214,4 +237,4 @@ public:
     }
 };
 #endif
-/*------------------------------------------------------------------ FIM---------------------------------------------------------------*/
+/*-----------------------------------------------------FIM----------------------------------------------------------------------*/
