@@ -1,38 +1,83 @@
 #ifndef ENTIDADES_HPP_INCLUDED
 #define ENTIDADES_HPP_INCLUDED
 
-#include <stdexcept>
+#include <string>
+#include "Dominios.hpp"
 
 using namespace std;
 
-class Nome{
+class Leitor
+{
 
-}
-class Sobrenome{
+private:
 
-}
-class Telefone{
+    Nome nome;
+    Sobrenome sobrenome;
+    EnderecoDeCorreioEletronico email;
+    Senha senha;
 
-}
-class Endereco{
+public:
 
-}
-class Data{
+    void setNome(const Nome nome)
+    {
+        this->nome = nome;
+    }
 
-}
-class EnderecoDeCorreioEletronico{
+    Nome getNome()
+    {
+        return nome;
+    }
 
-}
-class Senha{
+    void setSobrenome(const Sobrenome sobrenome)
+    {
+        this->sobrenome = sobrenome;
+    }
 
-}
-class TextoDeDefinicao{
+    Sobrenome getSobrenome() const
+    {
+        return sobrenome;
+    }
 
-}
-class Idioma{
+    void setEnderecoDeCorreioEletronico(const EnderecoDeCorreioEletronico email)
+    {
+        this->email = email;
+    }
 
-}
-class ClasseDeTermo{
+    EnderecoDeCorreioEletronico getEnderecoDeCorreioEletronico()
+    {
+        return email;
+    }
 
-}
+    void setSenha(const Senha senha)
+    {
+        this->senha = senha;
+    }
+
+    Senha getSenha()
+    {
+        return (senha);
+    }
+
+};
+
+class Desenvolvedor
+{
+};
+
+class Administrador
+{
+};
+
+class VocabularioControlado
+{
+};
+
+class Termo
+{
+};
+
+class Definicao
+{
+};
+
 #endif

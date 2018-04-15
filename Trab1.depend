@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1522509537 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\entidades.cpp
+1523804736 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\entidades.cpp
+	"Entidades.hpp"
 
 1514140574 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\main.cpp
 	<iostream>
@@ -8,10 +9,14 @@
 
 1523023520 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\testesentidades.cpp
 
-1523803277 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.cpp
+1523803564 source:c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.cpp
 	"Dominios.hpp"
 	<iostream>
 
-1523800541 c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.hpp
+1523807846 c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\dominios.hpp
 	<stdexcept>
+
+1523808214 c:\users\mathe\documents\ciência da computação\tp1\trabalho de tp1\tp1_trab1\entidades.hpp
+	<string>
+	"Dominios.hpp"
 
