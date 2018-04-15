@@ -214,4 +214,47 @@ public:
     }
 };
 #endif
+
+/*--------------------------------------------------------- Classe Data---------------------------------------------------------------*/
+
+ class Data
+ {
+
+ private:
+
+     const static int tamData = 10;
+     string data;
+
+     int  charToInt(char);
+     bool validaFor(string);
+     string validaData(string);
+
+ public:
+
+     void setData(string) throw (invalid_argument);
+     string getData()
+     {
+         return data;
+     }
+ };
+
+
+/*--------------------------------------------------------- Classe Email---------------------------------------------------------------*/
+
+ class Email
+ {
+private:
+    string email;
+    bool validar(string);
+public:
+
+    void setEmail(string) throw (invalid_argument);
+
+    string getEmail()
+    {
+        return(email);
+    }
+
+ };
+
 /*------------------------------------------------------------------ FIM---------------------------------------------------------------*/
