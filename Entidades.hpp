@@ -4,7 +4,6 @@
 #include <string>
 #include "Dominios.hpp"
 
-using namespace std;
 
 class Leitor
 {
@@ -13,7 +12,7 @@ private:
 
     Nome nome;
     Sobrenome sobrenome;
-    EnderecoDeCorreioEletronico email;
+    Email email;
     Senha senha;
 
 public:
@@ -38,12 +37,12 @@ public:
         return sobrenome;
     }
 
-    void setEnderecoDeCorreioEletronico(const EnderecoDeCorreioEletronico email)
+    void setEmail(const Email email)
     {
         this->email = email;
     }
 
-    EnderecoDeCorreioEletronico getEnderecoDeCorreioEletronico()
+    Email getEmail()
     {
         return email;
     }
