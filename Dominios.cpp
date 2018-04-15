@@ -295,6 +295,25 @@ void Senha::setSenha(string senha)
     this->senha = senha;
 }
 
+/*--------------------------------------------------Métodos da classe de TextoDeDefiniçao----------------------------------------------*/
+
+ bool TextoDef::validar(string texto)
+
+{
+
+    int i;
+
+    for(i=0; texto[i]!= '\0'; i++);
+
+    if( i==0 || i>=30)
+    {
+       return(false);
+    }
+    else
+    {
+       return(true);
+    }
+}
 
 /*------------------------------------------------Métodos da classe Endereco--------------------------------------------------------------*/
 
@@ -342,8 +361,7 @@ void Endereco::validar(string endereco) throw (invalid_argument)
 
             }
 
-        }
-    }
+
 
     for(i=0; i<tamEndereco; i++)
     {
@@ -364,6 +382,71 @@ void Endereco :: setEndereco(string) throw (invalid_argument)
     validar(endereco);
     this->endereco = endereco;
 
+}
+
+
+/*--------------------------------------------------Métodos da classe Idioma-----------------------------------------------------------*/
+
+
+bool Idioma::validar(string idioma)
+{
+    if(idioma != "ENG"  && idioma != "FRA"   && idioma != "GER" && idioma != "ITA"  && idioma != "POR" && idioma != "SPA" )
+    {
+        return(false);
+    }
+    else
+    {
+        return(true);
+    }
+}
+
+
+void Idioma::setIdioma(string idioma) throw (invalid_argument)
+{
+    bool idiomaVal;
+
+    idiomaVal = validar(idioma);
+
+    if(idiomaVal==false)
+    {
+        throw invalid_argument("\n Idioma não reconhecido ! Os idiomas reconhecidos são:\n ENG;\n GER \n FRA \n ITA \n POR \n SPA \n ");
+    }
+    this->idioma = idioma;
+
+}
+
+
+
+
+
+
+/*-------------------------------------------------Métodos da classe ClasseDeTermo-----------------------------------------------------*/
+
+bool ClasseDeTermo::validar (string claTer)
+{
+    if(claTer != "PT" && claTer != "NP")
+    {
+        return(false);
+    }
+    else
+    {
+        return(true);
+    }
+}
+
+
+void ClasseDeTermo::setClasse(string ClaTer) throw (invalid_argument)
+{
+    bool classeVal;
+
+    classeVal = validar(claTer);
+
+    if(classeVal == false)
+    {
+        throw invalid_argument("\n Classe de termos não reconhecida \n");
+    }
+
+    this->claTer = claTer;
 }
 
 
