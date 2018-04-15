@@ -297,7 +297,7 @@ void Senha::setSenha(string senha)
 
 /*--------------------------------------------------Métodos da classe de TextoDeDefiniçao----------------------------------------------*/
 
- bool TextoDef::validar(string texto)
+bool TextoDef::validar(string texto)
 
 {
 
@@ -307,11 +307,11 @@ void Senha::setSenha(string senha)
 
     if( i==0 || i>=30)
     {
-       return(false);
+        return(false);
     }
     else
     {
-       return(true);
+        return(true);
     }
 }
 
@@ -322,8 +322,9 @@ void Endereco::validar(string endereco) throw (invalid_argument)
 {
 
     int i, carac;
+    bool apenasLetras = false;
 
-    for(i=0; endereco[i]!= '\0'; i++)
+    for(i=0; endereco[i]!= '\0'; i++)//Verifica o tamanho da string de endereco.
     {
         // As strings terminam com \0
         if(i==tamEndereco)
@@ -360,19 +361,27 @@ void Endereco::validar(string endereco) throw (invalid_argument)
                 throw invalid_argument("Dois ou mais espacos em branco no endereco.");
 
             }
-
-
-
-    for(i=0; i<tamEndereco; i++)
-    {
-        carac=endereco[i];
-
-        if(48<=carac && carac <= 57)
-        {
-            throw invalid_argument("Ha numeros no endereco.");
         }
 
-    }
+
+            for(i=0; i<tamEndereco; i++)//Verifica se a string endereco so tem letras e espaco em branco.
+            {
+                carac=endereco[i];
+
+                if(carac==32 || (65<=carac && carac<=90) || (97<=carac && carac <= 122))
+                {
+                    apenasLetras = true;
+                }
+
+            }
+             if(apenasLetras != true){
+                throw invalid_argument("Ha caracteres diferente de letras.");
+             }
+
+        }
+
+
+
 
 }
 
