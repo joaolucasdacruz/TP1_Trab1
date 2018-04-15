@@ -74,17 +74,17 @@ class Endereco
 
 private:
 
-    const static int tamEnderco = 20;
-    char endereco[tamEnderco];
+    const static int tamEndereco = 20;
+    string endereco;
 
-    void validar(char*) throw (invalid_argument);
+    void validar(string) throw (invalid_argument);
 
 public:
 
-    void setEndereco(char*) throw (invalid_argument);
-    char getEndereco() const
+    void setEndereco(string) throw (invalid_argument);
+    string getEndereco() const
     {
-        return *endereco;
+        return endereco;
     }
 };
 
@@ -160,16 +160,58 @@ public:
 
 /*-------------------------------------------------------- Classe TextoDefinicao-------------------------------------------------------*/
 
-class TextoDeDefinicao
+class TextoDef
 {
 
+private:
+/*Atributos privados*/
+    string texto;
+
+/*Métodos privados*/
+    bool validar(string);
+
+public:
+
+/*Métodos Públicos*/
+        void setTexto(string) throw (invalid_argument);
+        string getTexto(){
+            return(texto);
+        }
+
 };
+/*--------------------------------------------------------- Classe Idioma--------------------------------------------------------------*/
 class Idioma
 {
 
+private:
+
+    string idioma;
+    bool validar(string);
+
+public:
+
+    void setIdioma(string) throw(invalid_argument);
+    string getLingua(string idioma)
+    {
+        return(idioma);
+    }
+
 };
+/*---------------------------------------------------------- Classe ClasseDeTermo------------------------------------------------------*/
 class ClasseDeTermo
 {
 
+private:
+
+    string claTer;
+    bool validar(string );
+
+public:
+
+    void setClasse(string) throw(invalid_argument);
+    string getClasser(string claTer){
+        return(claTer);
+    }
 };
 #endif
+/*------------------------------------------------------------------ FIM---------------------------------------------------------------*/
