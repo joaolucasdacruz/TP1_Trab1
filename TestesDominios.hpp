@@ -1,48 +1,69 @@
 #ifndef TESTES_DOMINIOS_HPP_INCLUDED
 #define TESTES_DOMINIOS_HPP_INCLUDED
+#include "Dominios.hpp"
+#include<iostream>
+#include<string>
 
 
-#include "testes.h"
+using namespace std;
 
 
-void TUNome::setUp(){
-    nome = new Nome();
-    estado = SUCESSO;
-}
+/*------------------------------------------Teste de Unidade Nome----------------------------------------------------------------*/
+class TUNome
+{
 
-void TUNome::tearDown(){
-    delete nome;
-}
-
-void TUNome::testarCenarioSucesso(){
-    try{
-        nome->setNome(NOME_VALIDO);
-        if (nome->getNome() != NOME_VALIDO)
-            estado = FALHA;
-    }
-    catch(invalid_argument excecao){
-        estado = FALHA;
-    }
-}
-
-void TUNome::testarCenarioFalha(){
-    try{
-        nome->setNome(NOME_INVALIDO);
-        estado = FALHA;
-    }
-    catch(invalid_argument excecao){
-        return;
-    }
-}
-
-int TUNome::run(){
-    setUp();
-    testarCenarioSucesso();
-    testarCenarioFalha();
-    tearDown();
-    return estado;
-}
+private:
 
 
+    Nome *nome;
+
+    int resultado;
+
+    void setUp();
+    void tearDown();
+    void nomeValido();
+    void nomeMinusculo();
+    void nomeComDigito();
+    void nomeDuasMaiusculas();
+    void nomeGrande();
+
+public:
+
+    const static int SUCESSO =  0;
+    const static int FALHA   = -1;
+
+    void run();
+
+};
+/*------------------------------------------------- Teste de Unidade Email------------------------------------------------------*/
+class TUEmail
+{
+
+private:
+
+
+    Email *email;
+
+    int resultado;
+
+    void setUp();
+    void tearDown();
+//caso de Sucesso
+    void emailValido();
+//casos de Falha
+    void emailSemArroba();
+    void emailPontoLocal();
+    void emailDomNumerico();
+    void emailHifenDominio();
+
+public:
+
+    const static int SUCESSO =  0;
+    const static int FALHA   = -1;
+
+    void run();
+
+};
+/*------------------------------------------------------------Teste de Unidade Data---------------------------------------------*/
 
 #endif
