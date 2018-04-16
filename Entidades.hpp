@@ -1,9 +1,11 @@
 #ifndef ENTIDADES_HPP_INCLUDED
 #define ENTIDADES_HPP_INCLUDED
-
-#include <string>
+#include<iostream>
 #include "Dominios.hpp"
 
+using namespace std;
+
+/*-------------------------------------------Classe Leitor----------------------------------------------------------------------*/
 
 class Leitor
 {
@@ -15,41 +17,46 @@ private:
     Email email;
     Senha senha;
 
+    bool findName(string , string );
+
 public:
 
-    void setNome(const Nome nome)
+    void setNome(const Nome &nomeSet)
     {
-        this->nome = nome;
+        cout<<"\n entrou\n"<<endl;
+        nomeVsSenha(nomeSet,senha);
+        this->nome = nomeSet;
     }
 
     Nome getNome()
     {
-        return nome;
+        return (nome);
     }
 
-    void setSobrenome(const Sobrenome sobrenome)
+    void setSobrenome(const Sobrenome &sobrenome)
     {
         this->sobrenome = sobrenome;
     }
 
     Sobrenome getSobrenome() const
     {
-        return sobrenome;
+        return (sobrenome);
     }
 
-    void setEmail(const Email email)
+    void setEmail(const Email &email)
     {
         this->email = email;
     }
 
     Email getEmail()
     {
-        return email;
+        return (email);
     }
 
-    void setSenha(const Senha senha)
+    void setSenha(const Senha &senhaSet)
     {
-        this->senha = senha;
+        nomeVsSenha(nome,senhaSet);
+        this->senha = senhaSet;
     }
 
     Senha getSenha()
@@ -57,28 +64,34 @@ public:
         return (senha);
     }
 
+    void nomeVsSenha(Nome,Senha) throw (invalid_argument);
 };
+
+/*-----------------------------------------------Classe desenvolvedor-----------------------------------------------------------*/
 
 class Desenvolvedor: public Leitor
 {
 
 private:
 
-    Data aniversario;
+    Data data;
 
 public:
 
-    void setData(const Data aniversario)
+    void setData(const Data data)
     {
-        this->aniversario = aniversario;
+        this->data = data;
     }
 
     Data getData()
     {
-        return aniversario;
+        return (data);
     }
 
 };
+
+
+/*-------------------------------------------------Classe Administrador---------------------------------------------------------*/
 
 class Administrador: public Desenvolvedor
 {
@@ -89,37 +102,146 @@ class Administrador: public Desenvolvedor
 
  public:
 
-    void setTelefone(const Telefone telefone)
+    void setTelefone(const Telefone &telefone)
     {
         this->telefone = telefone;
     }
 
     Telefone getTelefone()
     {
-        return telefone;
+        return (telefone);
     }
 
-    void setEndereco(const Endereco endereco)
+    void setEndereco(const Endereco &endereco)
     {
         this->endereco = endereco;
     }
 
     Endereco getEndereco()
     {
-        return endereco;
+        return (endereco);
     }
 };
 
-class VocabularioControlado
+
+/*--------------------------------------------Classe Vocabulário controlado-----------------------------------------------------*/
+class VocabContr
 {
+
+private:
+
+    Nome nome;
+    Idioma idioma;
+    Data data;
+
+public:
+
+    void setNome (const Nome &nome)
+    {
+        this->nome=nome;
+    }
+
+    Nome getNome()
+    {
+        return(nome);
+    }
+
+    void setIdioma(const Idioma &idioma)
+    {
+        this->idioma=idioma;
+    }
+
+    Idioma getIdioma()
+    {
+        return(idioma);
+    }
+
+    void setData (const Data &data)
+    {
+        this->data=data;
+    }
+
+    Data getData()
+    {
+        return(data);
+    }
+
 };
+/*---------------------------------------------------- Classe Termo-------------------------------------------------------------*/
 
 class Termo
 {
+private:
+    Nome nome;
+    ClasseDeTermo classe;
+    Data data;
+
+public:
+
+    void setNome (const Nome &nome)
+    {
+        this->nome=nome;
+    }
+
+    Nome getNome()
+    {
+        return(nome);
+    }
+
+    void setClasse(const ClasseDeTermo &classe)
+    {
+        this->classe=classe;
+    }
+
+    ClasseDeTermo getClasse()
+    {
+        return(classe);
+    }
+
+    void setData (const Data &data)
+    {
+        this->data=data;
+    }
+
+    Data getData()
+    {
+        return(data);
+    }
+
 };
+
+/*---------------------------------------------------- Classe Definiçao --------------------------------------------------------*/
+
 
 class Definicao
 {
+
+private:
+    Data data;
+    TextoDef texto;
+public:
+
+
+    void setTexto (const TextoDef &texto)
+    {
+        this->texto=texto;
+    }
+
+    TextoDef getTexto()
+    {
+        return(texto);
+    }
+
+    void setData (const Data &data)
+    {
+        this->data=data;
+    }
+
+    Data getData()
+    {
+        return(data);
+    }
+
 };
 
 #endif
