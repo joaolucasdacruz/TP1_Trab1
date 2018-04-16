@@ -6,7 +6,7 @@
  using namespace std;
 
  /*---------------------------------------------------------Classe Nome----------------------------------------------------------------*/
- class Nome
+ class Nome ///Essa classe faz o controle de armazenamento e fornecimento do atributo nome.
  {
 
  private:
@@ -20,10 +20,10 @@
  public:
 
  //Método setNome muda o atributo nome
-     void setNome(string);
+     void setNome(string);///Armazena o atributo nome no formato string.
 
  //getNome retorna o atributo nome do objeto
-     string getNome()
+     string getNome()///Fornece o atributo nome no formato string.
      {
          return nome;
      }
@@ -31,7 +31,7 @@
  };
 
  /*----------------------------------------------------------Classe Sobrenome-----------------------------------------------------------*/
- class Sobrenome
+ class Sobrenome///Essa classe faz o controle de armazenamento e fornecimento do atributo sobrenome.
  {
 
  private:
@@ -43,8 +43,8 @@
 
  public:
 
-     void setSobreNome(char*) throw (invalid_argument);
-     char getSobreNome() const
+     void setSobreNome(char*) throw (invalid_argument);///Armazena o atributo sobrenome no formato vetor de caracter.
+     char getSobreNome() const///Fornece o atributo sobrenome no formato vetor de caracter.
      {
          return *sobrenome;
      }
@@ -53,7 +53,7 @@
 
  /*-------------------------------------------------Classe Telefone-------------------------------------------------------------*/
 
- class Telefone
+ class Telefone///Essa classe faz o controle de armazenamento e fornecimento do atributo telefone.
  {
  private:
 
@@ -64,8 +64,8 @@
 
  public:
 
-     void setTelefone(char*) throw (invalid_argument);
-     char getTelefone() const
+     void setTelefone(char*) throw (invalid_argument);///Armazena o atributo telefone no formato vetor de caracter.
+     char getTelefone() const///Fornece o atributo telefone no formato vetor de caracter.
      {
          return *telefone;
      }
@@ -73,7 +73,7 @@
 
  /*------------------------------------------------------Classe Endereco--------------------------------------------------------*/
 
- class Endereco
+ class Endereco///Essa classe faz o controle de armazenamento e fornecimento do atributo endereco.
  {
 
  private:
@@ -85,8 +85,8 @@
 
  public:
 
-     void setEndereco(string) throw (invalid_argument);
-     string getEndereco()
+     void setEndereco(string) throw (invalid_argument);///Armazena o atributo endereco no formato string.
+     string getEndereco()///Fornece o atributo endereco no formato string.
      {
          return endereco;
      }
@@ -94,7 +94,7 @@
 
  /*--------------------------------------------------------Classe Data----------------------------------------------------------*/
 
- class Data
+ class Data///Essa classe faz o controle de armazenamento e fornecimento do atributo data.
  {
 
  private:
@@ -108,8 +108,8 @@
 
  public:
 
-     void setData(string) throw (invalid_argument);
-     string getData()
+     void setData(string) throw (invalid_argument);///Armazena o atributo data no formato string.
+     string getData()///Fornece o atributo data no formato string.
      {
          return data;
      }
@@ -117,16 +117,16 @@
 
 /*----------------------------------------------------EnderecoDeCorreioEletronico------------------------------------------------*/
 
- class Email
+ class Email///Essa classe faz o controle de armazenamento e fornecimento do atributo email.
  {
 private:
     string email;
     bool validar(string);
 public:
 
-    void setEmail(string) throw (invalid_argument);
+    void setEmail(string) throw (invalid_argument);///Armazena o atributo email no formato string.
 
-    string getEmail()
+    string getEmail()///Fornece o atributo email no formato string.
     {
         return(email);
     }
@@ -134,7 +134,7 @@ public:
  };
  /*-------------------------------------------------------------Classe Senha------------------------------------------------------------*/
 
- class Senha
+ class Senha///Essa classe faz o controle de armazenamento e fornecimento do atributo senha.
  {
 
  private:
@@ -161,9 +161,9 @@ public:
 
 
  //Armazena a senha
-     void setSenha(string);
+     void setSenha(string);///Armazena o atributo senha no formato string.
  //Retorna a senha
-     string getSenha()
+     string getSenha()///Fornece o atributo senha no formato string.
      {
          return(senha);
      }
@@ -171,7 +171,7 @@ public:
 
 /*-------------------------------------------------------- Classe TextoDefinicao-------------------------------------------------------*/
 
-class TextoDef
+class TextoDef///Essa classe faz o controle de armazenamento e fornecimento do atributo texto de definicao.
 {
 
 private:
@@ -184,9 +184,9 @@ private:
 public:
 
 /*Métodos Públicos*/
-        void setTexto(string) throw (invalid_argument);
+        void setTexto(string) throw (invalid_argument);///Armazena o atributo texto de definicao no formato string.
 
-        string getTexto(){
+        string getTexto(){///Fornece o atributo texto de definicao no formato string.
             return(texto);
         }
 
@@ -196,7 +196,7 @@ public:
 
 /*-----------------------------------------------------classe Idioma------------------------------------------------------------*/
 
-class Idioma
+class Idioma///Essa classe faz o controle de armazenamento e fornecimento do atributo idioma.
 {
 
 private:
@@ -206,8 +206,8 @@ private:
 
 public:
 
-    void setIdioma(string) throw(invalid_argument);
-    string getIdioma()
+    void setIdioma(string) throw(invalid_argument);///Armazena o atributo idioma no formato string.
+    string getIdioma()///Fornece o atributo idioma no formato string.
     {
         return(idioma);
     }
@@ -216,7 +216,7 @@ public:
 
 /*---------------------------------------------------ClasseDeTermo--------------------------------------------------------------*/
 
-class ClasseDeTermo
+class ClasseDeTermo///Essa classe faz o controle de armazenamento e fornecimento do atributo classe de termo.
 {
 
 private:
@@ -226,8 +226,8 @@ private:
 
 public:
 
-    void setClasse(string) throw(invalid_argument);
-    string getClasse(){
+    void setClasse(string) throw(invalid_argument);///Armazena o atributo classe de termo no formato string.
+    string getClasse(){///Armazena o atributo classe de termo no formato string.
         return(claTer);
     }
 };

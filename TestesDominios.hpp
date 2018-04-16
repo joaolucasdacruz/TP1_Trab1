@@ -9,7 +9,7 @@ using namespace std;
 
 
 /*------------------------------------------Teste de Unidade Nome----------------------------------------------------------------*/
-class TUNome
+class TUNome///Essa classe e responsavel por testar o atributo nome.
 {
 
 private:
@@ -29,14 +29,14 @@ private:
 
 public:
 
-    const static int SUCESSO =  0;
-    const static int FALHA   = -1;
+    const static int SUCESSO =  0;///Informa que o programa esta funcionando corretamente.
+    const static int FALHA   = -1;///Informa que o programa nao esta funcionando corretamente.
 
     void run();
 
 };
 /*------------------------------------------------- Teste de Unidade Email------------------------------------------------------*/
-class TUEmail
+class TUEmail///Essa classe e responsavel por testar o atributo email.
 {
 
 private:
@@ -58,8 +58,8 @@ private:
 
 public:
 
-    const static int SUCESSO =  0;
-    const static int FALHA   = -1;
+    const static int SUCESSO =  0;///Informa que o programa esta funcionando corretamente.
+    const static int FALHA   = -1;///Informa que o programa nao esta funcionando corretamente.
 
     void run();
 
