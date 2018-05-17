@@ -6,7 +6,8 @@
  using namespace std;
 
  /*---------------------------------------------------------Classe Nome----------------------------------------------------------------*/
- class Nome ///Essa classe faz o controle de armazenamento e fornecimento do atributo nome.
+ class Nome /// Essa classe armazena uma string que representa um nome de usuario.
+ ///Os objetos dessa classe representam representam o atributo nome de uma entidade,
  {
 
  private:
@@ -19,11 +20,16 @@
 
  public:
 
- //Método setNome muda o atributo nome
-     void setNome(string);///Armazena o atributo nome no formato string.
+ /// Recebe  uma string e a armazena em um objeto desta classe.
+ /// A string não pode possuir digitos ou caracteres especiais,
+ /// deve ter no maximo 20 caracteres, deve começar com uma letra
+ /// maiuscula e esta deve ser a unica letra maiuscula.
+     void setNome(string);
 
  //getNome retorna o atributo nome do objeto
-     string getNome()///Fornece o atributo nome no formato string.
+ /// Retorna a string previamente armazenada como o atributo nome
+ /// De um objeto a classe
+     string getNome()
      {
          return nome;
      }
@@ -31,49 +37,70 @@
  };
 
  /*----------------------------------------------------------Classe Sobrenome-----------------------------------------------------------*/
- class Sobrenome///Essa classe faz o controle de armazenamento e fornecimento do atributo sobrenome.
+ class Sobrenome/// Essa classe armazena uma string que representa um sobrenome de usuario.
+ ///Os objetos dessa classe representam representam o atributo sobrenome de uma entidade,
  {
 
  private:
 
      const static int tamSobrenome = 20;
-     char sobrenome[tamSobrenome];
+     string sobrenome;
 
-     void validar(char*) throw (invalid_argument);
+     void validar(string) throw (invalid_argument);
 
  public:
 
-     void setSobreNome(char*) throw (invalid_argument);///Armazena o atributo sobrenome no formato vetor de caracter.
-     char getSobreNome() const///Fornece o atributo sobrenome no formato vetor de caracter.
+
+     void setSobreNome(string);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string nao pode possuir digitos ou caracteres especiais,
+/// deve ter no maximo 20 caracteres, deve começar com uma letra
+/// maiuscula e esta deve ser a unica letra maiuscula.
+
+     string getSobreNome()
+/// Retorna uma string que representa um sobrenome de usuario
+/// previamente armazenada em um objeto da classe
      {
-         return *sobrenome;
+         return sobrenome;
      }
 
  };
 
  /*-------------------------------------------------Classe Telefone-------------------------------------------------------------*/
 
- class Telefone///Essa classe faz o controle de armazenamento e fornecimento do atributo telefone.
+ class Telefone /// Representa o telefone de um usuario, os objetos dessa classe
+ /// representam o atributo telefone de uma entidade
  {
  private:
 
-     const static int tamTelefone = 13;
-     char telefone[tamTelefone];
+     const static int tamTelefone = 12;
+     string telefone;
 
-     void validar(char*) throw (invalid_argument);
+     void validar(string) throw (invalid_argument);
 
  public:
 
-     void setTelefone(char*) throw (invalid_argument);///Armazena o atributo telefone no formato vetor de caracter.
-     char getTelefone() const///Fornece o atributo telefone no formato vetor de caracter.
+
+
+     void setTelefone(string) throw (invalid_argument);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string nao pode possuir letras ou caracteres especiais exceto hifen(-),
+/// que deve ser o oitavo (e apenas o oitavo) caractere necessariamente da string,
+/// A string deter ter 12 caracteres necessariamente.
+
+
+     string getTelefone() const
+///Retorna uma string que representa um telefone previamente armazenado
+///em um objeto desta classe
      {
-         return *telefone;
+         return telefone;
      }
  };
 
  /*------------------------------------------------------Classe Endereco--------------------------------------------------------*/
 
- class Endereco///Essa classe faz o controle de armazenamento e fornecimento do atributo endereco.
+ class Endereco /// Os objetos dessa classe armazenam uma string que representam o endereco e um usuario
+///Os objetos dessa classe sao usados como atributos de classas de entidade
  {
 
  private:
@@ -85,8 +112,16 @@
 
  public:
 
-     void setEndereco(string) throw (invalid_argument);///Armazena o atributo endereco no formato string.
-     string getEndereco()///Fornece o atributo endereco no formato string.
+     void setEndereco(string) throw (invalid_argument);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string nao pode possuir caracteres especiais ou digitos,
+/// A string poe conter espacos em branco, desde que nao sejam
+/// nem o primeiro e nem o ultimo caractere
+
+     string getEndereco()
+///Retorna uma string que representa um endereco previamente armazenado
+///em um objeto desta classe
+
      {
          return endereco;
      }
@@ -94,7 +129,8 @@
 
  /*--------------------------------------------------------Classe Data----------------------------------------------------------*/
 
- class Data///Essa classe faz o controle de armazenamento e fornecimento do atributo data.
+ class Data /// Os objetos dessa classe armazenam uma string que representaa data de entrada de um usuario
+///ou de uma definicao ou termo, objetos dessa classe sao usados como atributos de classas de entidade
  {
 
  private:
@@ -108,8 +144,16 @@
 
  public:
 
-     void setData(string) throw (invalid_argument);///Armazena o atributo data no formato string.
-     string getData()///Fornece o atributo data no formato string.
+     void setData(string) throw (invalid_argument);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string nao pode possuir letras ou caracteres especiais exceto '/',
+/// Que deve ser o terceiro e o sexto caracteres necessariamente
+/// e podem apenas aparecer nas posicoes citadas. As datas consideram ano
+/// bissexto. Formato correto DD/MM/YYY.
+
+     string getData()
+///Retorna uma string que representa uma data previamente armazenada
+///em um objeto desta classe
      {
          return data;
      }
@@ -117,16 +161,24 @@
 
 /*----------------------------------------------------EnderecoDeCorreioEletronico------------------------------------------------*/
 
- class Email///Essa classe faz o controle de armazenamento e fornecimento do atributo email.
+ class Email /// Essa classe armazena e representa o Email de um usuario
+///Objetos dessa classe sao atributos de objetos de uma classe de entidade
  {
 private:
     string email;
     bool validar(string);
 public:
 
-    void setEmail(string) throw (invalid_argument);///Armazena o atributo email no formato string.
+    void setEmail(string) throw (invalid_argument);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string deve ter necessariamente o caractere @ separando local
+/// e dominio, o dominio nao pode conter unicamente numeros ou comecar ou terminar com
+/// hifen, sendo esse o unico caractere especial permitido no dominio, ja o local nao pode
+/// comecar ou terminar com  ponto e pode conter caracteres especiais
 
-    string getEmail()///Fornece o atributo email no formato string.
+    string getEmail()
+///Retorna uma string que representa um Email previamente armazenado
+///em um objeto desta classe
     {
         return(email);
     }
@@ -134,7 +186,8 @@ public:
  };
  /*-------------------------------------------------------------Classe Senha------------------------------------------------------------*/
 
- class Senha///Essa classe faz o controle de armazenamento e fornecimento do atributo senha.
+ class Senha /// Essa classe representa uma senha definida por um usuario
+ ///A classe eh usada como atributo de objetos e classes de entidade
  {
 
  private:
@@ -161,9 +214,16 @@ public:
 
 
  //Armazena a senha
-     void setSenha(string);///Armazena o atributo senha no formato string.
+     void setSenha(string);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string deve ter pelo menos uma letra maiuscula, um digito
+/// e uma letra minuscula. O tamanho da string eve ser necessariamente
+/// 8 caracteres, tambem nao pode conter caracteres especiais
  //Retorna a senha
-     string getSenha()///Fornece o atributo senha no formato string.
+     string getSenha()
+///Retorna uma string que representa uma Senha previamente armazenado
+///em um objeto desta classe
+
      {
          return(senha);
      }
@@ -171,7 +231,9 @@ public:
 
 /*-------------------------------------------------------- Classe TextoDefinicao-------------------------------------------------------*/
 
-class TextoDef///Essa classe faz o controle de armazenamento e fornecimento do atributo texto de definicao.
+class TextoDef /// Essa classe representa e armazena uma definicao de um termo
+///Os objetos da classe sao usados como atributos de objetos da classe Termo
+
 {
 
 private:
@@ -184,9 +246,13 @@ private:
 public:
 
 /*Métodos Públicos*/
-        void setTexto(string) throw (invalid_argument);///Armazena o atributo texto de definicao no formato string.
+        void setTexto(string) throw (invalid_argument);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string deve ter no maximo 30 caracteres podendo eles ser quaisquer
 
-        string getTexto(){///Fornece o atributo texto de definicao no formato string.
+        string getTexto(){
+///Retorna uma string que representa um texto de definicao previamente armazenado
+///em um objeto desta classe
             return(texto);
         }
 
@@ -196,7 +262,8 @@ public:
 
 /*-----------------------------------------------------classe Idioma------------------------------------------------------------*/
 
-class Idioma///Essa classe faz o controle de armazenamento e fornecimento do atributo idioma.
+class Idioma /// Os objetos dessa classe armazenam o idioma de uma definicao
+/// e sao usados como atributos e objetos da classe definicao
 {
 
 private:
@@ -206,8 +273,14 @@ private:
 
 public:
 
-    void setIdioma(string) throw(invalid_argument);///Armazena o atributo idioma no formato string.
-    string getIdioma()///Fornece o atributo idioma no formato string.
+    void setIdioma(string) throw(invalid_argument);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string deve ter ser uma das seguintes opcoes:
+/// "ENG", "GER", "ITA", "POR", "SPA" ou "FRA"
+
+    string getIdioma()
+///Retorna uma string que representa um Idioma previamente armazenado
+///em um objeto desta classe
     {
         return(idioma);
     }
@@ -216,7 +289,8 @@ public:
 
 /*---------------------------------------------------ClasseDeTermo--------------------------------------------------------------*/
 
-class ClasseDeTermo///Essa classe faz o controle de armazenamento e fornecimento do atributo classe de termo.
+class ClasseDeTermo /// Os objetos dessa classe armazenam a classe de termo
+///podento variar entre preferida e nao preferida, sao usados como atributos e objetos da classe Termo
 {
 
 private:
@@ -226,8 +300,11 @@ private:
 
 public:
 
-    void setClasse(string) throw(invalid_argument);///Armazena o atributo classe de termo no formato string.
-    string getClasse(){///Armazena o atributo classe de termo no formato string.
+    void setClasse(string) throw(invalid_argument);
+/// Recebe  uma string e a armazena em um objeto desta classe.
+/// A string deve ter ser uma das seguintes opcoes:
+/// "PT" ou "NP"
+    string getClasse(){
         return(claTer);
     }
 };
