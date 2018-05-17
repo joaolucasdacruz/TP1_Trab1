@@ -1,4 +1,3 @@
-
 #include "Entidades.hpp"
 
 #include<iostream>
@@ -49,3 +48,4 @@ void Leitor::nomeVsSenha(Nome nome,Senha senha) throw (invalid_argument)
      }
      return (false);
  }
+
