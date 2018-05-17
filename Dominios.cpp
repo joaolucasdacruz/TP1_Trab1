@@ -69,81 +69,85 @@
 
  /*-------------------------------------------------- Métodos da classe Sobrenome-------------------------------------------------------*/
 
- void Sobrenome::validar(char *sobrenome) throw (invalid_argument)
+ void Sobrenome::validar(string sobrenome) throw (invalid_argument)
  {
 
      int tamLetras = 26, tamNumeros = 10;
      char letrasMaiusculas[tamLetras] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','W','Y','Z'};
      char numerosInteiros[tamNumeros] = {'0','1','2','3','4','5','6','7','8','9'};
-     int i=0;
+     int i=0, j=0;
 
-     bool achou;
+     bool achou=false;
 
-     while(achou != true ||i<tamLetras) //Verifica se a primeira letra do nome é maiuscula.
+      //Verifica se o nome possui mais de 20 caracteres (tamNome = 20)
+     for(i=0;sobrenome[i]!= '\0';i++);
+
+         if(i==tamSobrenome)
+         {
+             throw invalid_argument("O nome nao pode conter mais de 20 caracteres");
+         }
+
+
+     i=0; // reinicialização da variável de contagem
+
+ //Verifica se a primeira letra do nome é maiuscula.
+     while(achou != true && i<tamLetras)
      {
          if(sobrenome[0] == letrasMaiusculas[i])
              achou = true;
          i = i+1;
      }
-     if(achou == false)
-     {
-         throw invalid_argument("Argumento invalido.");
+     if(achou == false){
+         throw invalid_argument("\nNome não começa com letra maiuscula\n.");
      }
-
-     for(int i=0; i <= tamSobrenome; i++) // Verifica letra por letra do nome se alguma é um número inteiro
+ // Verifica letra por letra do nome se alguma é um número inteiro
+     for(i=0; sobrenome[i]!= '\0'; i++)
      {
-         for(int j=0; j <= tamNumeros; j++)
+         for(int i=0; j<=tamNumeros; j++)
          {
              if(sobrenome[i] == numerosInteiros[j])
              {
-                 throw invalid_argument("Argumento invalido.");
+                 throw invalid_argument("\nO nome contem digitos\n");
              }
          }
      }
-     for(int i=1; i <= tamSobrenome; i++) // Verifica se alguma letra a partir da segunda  é Maiúscula
+ // Verifica se alguma letra é maiuscula além da primeira
+     for(i=1; sobrenome[i]!= '\0'; i++)
      {
-         for(int j=0; j <= tamLetras; j++)
+         for(j=0; j<tamLetras; j++)
          {
              if(sobrenome[i] == letrasMaiusculas[j])
-                 throw invalid_argument("Argumento invalido.");
+             {
+                 throw invalid_argument("\nLetras maiusculas no meio ou fim do nome\n");
+             }
          }
      }
-
  }
 
- void Sobrenome::setSobreNome(char *sobrenome) throw (invalid_argument)
+ void Sobrenome::setSobreNome(string sobrenome)
  {
-
-     int i;
      validar(sobrenome);
-     for(i=0; i<=tamSobrenome; i++) // O This não está apontando apenas para o primeiro endereço de nome
-     {
-         this->sobrenome[i] = sobrenome[i];
-     }
-
+         this->sobrenome = sobrenome;
  }
-
 
  /*------------------------------------------------métodos da classe telefone-----------------------------------------------------------*/
 
 
- void Telefone::validar(char *telefone) throw (invalid_argument)
+ void Telefone::validar(string telefone) throw (invalid_argument)
  {
 
      int tamNumeros = 10;
      char numerosInteiros[tamNumeros] = {'0','1','2','3','4','5','6','7','8','9'};
      int i=0, j=0;
-     bool achou;
+     bool achou=false;
 
-     for(i=0; i<=1; i++)//Verifica se as posições são numeros em telefone.
+//Verifica se as posições são numeros em telefone.
+     for(i=0; telefone[i]!='\0' ; i++)
      {
-         for(i=3; i<=7; i++)
-         {
-             for(i=9; i<=12; i++)
-             {
-                 while(achou != true || j<tamNumeros)
+                 while(achou != true && j<tamNumeros )
                  {
-                     if(telefone[i] == numerosInteiros[j])
+
+                     if(telefone[i] == numerosInteiros[j] ||( i==7 && telefone[i]=='-') )
                      {
                          achou = true;
                      }
@@ -153,49 +157,19 @@
                  {
                      throw invalid_argument("Argumento invalido.");
                  }
-             }
-         }
-
+                 achou=false;
+                 j=0;
      }
-
-
-     while(achou != true ||i<tamNumeros) //Verifica o formato do numero do telefone.
-     {
-         if(telefone[0] == numerosInteiros[i])
-         {
-             achou = true;
-         }
-         if(telefone[1] == numerosInteiros[i])
-         {
-             achou = true;
-         }
-         if(telefone[2] == 0)//Verifica se a terceira casa da string telefone e nula.
-         {
-             achou = true;
-         }
-         if(telefone[8] == '-')
-         {
-             achou = true;
-         }
-         i = i+1;
-     }
-     if(achou == false)
-     {
+     if(i!=tamTelefone || telefone[7]!='-')
+    {
          throw invalid_argument("Argumento invalido.");
-     }
-
+    }
  }
 
- void Telefone::setTelefone(char *telefone) throw (invalid_argument)
+ void Telefone::setTelefone(string telefone) throw (invalid_argument)
  {
-
-     int i;
-     validar(telefone);
-     for(i=0; i<=tamTelefone; i++) // O This não está apontando apenas para o primeiro endereço de nome
-     {
-         this->telefone[i] = telefone[i];
-     }
-
+    validar(telefone);
+    this->telefone = telefone;
  }
  /*------------------------------------------------------------Métodos da classe Data---------------------------------------------------------------*/
 
@@ -615,8 +589,10 @@ void Idioma::setIdioma(string idioma) throw (invalid_argument)
 
 bool ClasseDeTermo::validar (string claTer)
 {
+
     if(claTer != "PT" && claTer != "NP")
     {
+
         return(false);
     }
     else
@@ -626,10 +602,10 @@ bool ClasseDeTermo::validar (string claTer)
 }
 
 
-void ClasseDeTermo::setClasse(string ClaTer) throw (invalid_argument)
+void ClasseDeTermo::setClasse(string claTer) throw (invalid_argument)
 {
-    bool classeVal;
 
+    bool classeVal;
     classeVal = validar(claTer);
 
     if(classeVal == false)
@@ -664,30 +640,29 @@ void Endereco::validar(string endereco) throw (invalid_argument)
 
      }
 
-     if(endereco[19] == 32)
+     if(endereco[i-1] == 32)
      {
 
          throw invalid_argument("Espaco em branco no final do endereco");
 
      }
 
-     for(i=0; i<tamEndereco; i++) //Verifica se ha dois espaços em brancos ou mais e lanca excessao.
+     for(i=0; endereco[i]!='\0'; i++) //Verifica se ha dois espaços em brancos ou mais consecutivos e lanca excessao.
      {
-         if(endereco[i] == 32)
+         if(endereco[i] == ' ')
          {
 
-             i=i+1;
 
-             if(endereco[i] == 32)
+             if(endereco[i+1] == ' ')
              {
 
                  throw invalid_argument("Dois ou mais espacos em branco no endereco.");
 
              }
          }
+ }
 
-
-             for(i=0; i<tamEndereco; i++)//Verifica se a string endereco so tem letras e espaco em branco.
+              for(i=0; endereco[i]!='\0'; i++)//Verifica se a string endereco so tem letras e espaco em branco.
              {
                  carac=endereco[i];
 
@@ -701,26 +676,14 @@ void Endereco::validar(string endereco) throw (invalid_argument)
                  throw invalid_argument("Ha caracteres diferente de letras.");
               }
 
-         }
+}
 
-
-
-
- }
-
- void Endereco :: setEndereco(string) throw (invalid_argument)
+ void Endereco :: setEndereco(string endereco) throw (invalid_argument)
  {
 
      validar(endereco);
      this->endereco = endereco;
 
  }
-
-
-
-
-
-
-
 
 
