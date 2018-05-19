@@ -1,125 +1,51 @@
-#ifndef ENTIDADES_HPP_INCLUDED
-#define ENTIDADES_HPP_INCLUDED
+#include "Entidades.hpp"
 
-#include <string>
-#include "Dominios.hpp"
+#include<iostream>
 
 
-class Leitor
+
+void Leitor::nomeVsSenha(Nome nome,Senha senha) throw (invalid_argument)
 {
+    bool nomeNaSenha;
 
-private:
+    string name = nome.getNome();
+    string password = senha.getSenha();
 
-    Nome nome;
-    Sobrenome sobrenome;
-    Email email;
-    Senha senha;
-
-public:
-
-    void setNome(const Nome nome)
+    nomeNaSenha = findName(password,name);
+    //cout << name<<endl;
+   // cout << password<<endl;
+    if(nomeNaSenha==true)
     {
-        this->nome = nome;
+        throw invalid_argument("\nA senha contém o nome\n");
+
     }
+}
 
-    Nome getNome()
-    {
-        return nome;
-    }
+ //Esse método tem que sair daqui e ir para as entidades de usuário.
+ bool Leitor::findName(string senha, string nomeS){
 
-    void setSobrenome(const Sobrenome sobrenome)
-    {
-        this->sobrenome = sobrenome;
-    }
+     const int tamNome = 20;
+     const int tamSenha = 8;
 
-    Sobrenome getSobrenome() const
-    {
-        return sobrenome;
-    }
+     char compara[tamNome];
+     int i=0,j=0;
 
-    void setEmail(const Email email)
-    {
-        this->email = email;
-    }
+     for(i=0;i<8;i++)
+     {
+     if(senha[i] == nomeS[0])                //Se alguma letra da senha é igual à primeira letra do nome
+         {                                   //As próximas letras em sequência são comparaas, até ser encontrada uma diferença
+                                             //Ou até todos os demais caracteres terem sido comparados em sequência
+             while(senha[i+j] == nomeS[j] || i+j <tamSenha){
+                 compara[j]= nomeS[j];       // Os caracteres iguais são armazenaos
+                 j=j+1;
 
-    Email getEmail()
-    {
-        return email;
-    }
+             }
+             if(compara==nomeS) // Se o conjunto de caracteres iguais em sequência conseguir formar o nome
+                 return(true);  // Significa que a senha contém o nome.
+             else
+                 j=0;
+         }
+     }
+     return (false);
+ }
 
-    void setSenha(const Senha senha)
-    {
-        this->senha = senha;
-    }
-
-    Senha getSenha()
-    {
-        return (senha);
-    }
-
-};
-
-class Desenvolvedor: public Leitor
-{
-
-private:
-
-    Data aniversario;
-
-public:
-
-    void setData(const Data aniversario)
-    {
-        this->aniversario = aniversario;
-    }
-
-    Data getData()
-    {
-        return aniversario;
-    }
-
-};
-
-class Administrador: public Desenvolvedor
-{
-
- private:
-    Telefone telefone;
-    Endereco endereco;
-
- public:
-
-    void setTelefone(const Telefone telefone)
-    {
-        this->telefone = telefone;
-    }
-
-    Telefone getTelefone()
-    {
-        return telefone;
-    }
-
-    void setEndereco(const Endereco endereco)
-    {
-        this->endereco = endereco;
-    }
-
-    Endereco getEndereco()
-    {
-        return endereco;
-    }
-};
-
-class VocabularioControlado
-{
-};
-
-class Termo
-{
-};
-
-class Definicao
-{
-};
-
-#endif
